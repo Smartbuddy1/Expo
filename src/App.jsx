@@ -187,7 +187,12 @@ export function App() {
               <img 
                 src={companyData.flagshipLogo} 
                 alt={`${companyData.flagshipName} - Aarya Innovtech`}
-                className="flagship-logo-img" 
+                className="flagship-logo-img"
+                onError={(e) => {
+                  if (e.currentTarget.src !== companyData.flagshipLogoFallback) {
+                    e.currentTarget.src = companyData.flagshipLogoFallback;
+                  }
+                }}
               />
             </div>
           </a>

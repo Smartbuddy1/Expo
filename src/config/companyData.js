@@ -4,6 +4,10 @@
  * All contact information, links, and branding assets are managed here.
  */
 
+  // Relative base URL for seamless hosting on root or subdirectories like /expo/
+  const baseUrl = import.meta.env.BASE_URL || './';
+  const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+
 export const companyData = {
   companyName: "AARYA INNOVTECH PVT. LTD.",
   shortName: "Aarya Innovtech",
@@ -29,13 +33,14 @@ export const companyData = {
   productsUrl: "https://aaryainnovtech.com/products/",
   achievementsUrl: "https://aaryainnovtech.com/achievements",
   
-  // Business Card & Branding Assets
-  cardImage: "/media/card_front.jpeg",
-  cardImageFront: "/media/card_front.jpeg",
-  cardImageBack: "/media/card_back.jpeg",
-  cardImageFallback: "/media/card_front.jpeg",
-  companyLogo: "/media/logo_new.jpeg",
-  flagshipLogo: "/media/smartbuddy.png.png",
+  // Business Card & Branding Assets (relative to base URL)
+  cardImage: `${cleanBase}media/card_front.jpeg`,
+  cardImageFront: `${cleanBase}media/card_front.jpeg`,
+  cardImageBack: `${cleanBase}media/card_back.jpeg`,
+  cardImageFallback: `${cleanBase}media/card_front.jpeg`,
+  companyLogo: `${cleanBase}media/logo_new.jpeg`,
+  flagshipLogo: `${cleanBase}media/smartbuddy.png`,
+  flagshipLogoFallback: `${cleanBase}media/smartbuddy.png.png`,
   flagshipName: "Smart Buddy®",
   
   // Social / Meta
