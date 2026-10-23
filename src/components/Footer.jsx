@@ -1,7 +1,7 @@
 import React from 'react';
-import { Phone, Mail, Globe, CheckCircle2 } from 'lucide-react';
+import { Phone, Mail, Globe, CheckCircle2, QrCode } from 'lucide-react';
 
-export function Footer({ data }) {
+export function Footer({ data, scanCount }) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -39,6 +39,18 @@ export function Footer({ data }) {
           <Globe size={15} />
           <span>Website</span>
         </a>
+      </div>
+
+      {/* Live QR Scan Counter Badge */}
+      <div className="scan-counter-container" aria-label="Live Total QR Code Scans">
+        <div className="scan-counter-badge">
+          <span className="live-indicator-dot" />
+          <QrCode size={13} className="counter-icon" />
+          <span className="counter-label">Total QR Scans:</span>
+          <span className="counter-number">
+            {scanCount !== null && scanCount !== undefined ? scanCount.toLocaleString() : '1'}
+          </span>
+        </div>
       </div>
 
       <div className="footer-divider" />

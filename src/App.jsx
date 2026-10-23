@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   UserPlus, 
   Globe, 
@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import companyData from './config/companyData';
 import { downloadVCard } from './utils/vcard';
+import { fetchScanCount } from './utils/scanTracker';
 import BusinessCard from './components/BusinessCard';
 import ActionButton from './components/ActionButton';
 import ImageModal from './components/ImageModal';
@@ -22,6 +23,15 @@ export function App() {
   const [modalImage, setModalImage] = useState(companyData.cardImageFront || companyData.cardImage);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
+  const [scanCount, setScanCount] = useState(null);
+
+  useEffect(() => {
+    fetchScanCount().then(count => {
+      if (typeof count === 'number') {
+        setScanCount(count);
+      }
+    });
+  }, []);
 
   // vCard file download (for modal or desktop use)
   const handleDownloadVCard = () => {
@@ -188,7 +198,7 @@ export function App() {
         </section>
 
         {/* Footer with quick dial & copyright */}
-        <Footer data={companyData} />
+        <Footer data={companyData} scanCount={scanCount} />
       </main>
 
       {/* Lightbox Image Preview Modal */}
