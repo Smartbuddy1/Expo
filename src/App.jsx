@@ -6,7 +6,6 @@ import {
   Check, 
   Share2, 
   Building2,
-  ArrowUpRight,
   Trophy
 } from 'lucide-react';
 import companyData from './config/companyData';
@@ -167,21 +166,11 @@ export function App() {
           />
         </section>
 
-        {/* Flagship Brand Section: Smart Buddy */}
+        {/* Flagship Brand Section: Smart Buddy (Display Card) */}
         <section className="flagship-brand-section" aria-label="Our Flagship Brand">
-          <a 
-            href={companyData.productsUrl} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flagship-card"
-            title="Explore Smart Buddy Products"
-          >
+          <div className="flagship-card">
             <div className="flagship-card-header">
               <span className="flagship-pill">Our Flagship Brand</span>
-              <span className="flagship-link-hint">
-                <span>Explore Products</span>
-                <ArrowUpRight size={14} />
-              </span>
             </div>
             <div className="flagship-logo-box">
               <img 
@@ -195,7 +184,7 @@ export function App() {
                 }}
               />
             </div>
-          </a>
+          </div>
         </section>
 
         {/* Footer with quick dial & copyright */}

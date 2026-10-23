@@ -993,24 +993,8 @@
   border: 1px solid var(--border-subtle);
   border-radius: 18px;
   padding: 1rem 1.15rem;
-  text-decoration: none;
-  cursor: pointer;
+  cursor: default;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.flagship-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(16, 185, 129, 0.45);
-  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.22);
-}
-
-.flagship-card:hover .flagship-link-hint {
-  color: var(--color-brand-emerald);
-}
-
-.flagship-card:hover .flagship-link-hint svg {
-  transform: translate(2px, -2px);
 }
 
 .flagship-card-header {
