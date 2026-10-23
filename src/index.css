@@ -34,25 +34,25 @@
   --grad-secondary: linear-gradient(135deg, #3B82F6 0%, #2563EB 60%, #1D4ED8 100%);
   --grad-secondary-hover: linear-gradient(135deg, #60A5FA 0%, #3B82F6 60%, #2563EB 100%);
   
-  --grad-accent: linear-gradient(135deg, #334155 0%, #1E293B 60%, #0F172A 100%);
-  --grad-accent-hover: linear-gradient(135deg, #475569 0%, #334155 60%, #1E293B 100%);
+  --grad-accent: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 55%, #6D28D9 100%);
+  --grad-accent-hover: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 55%, #7C3AED 100%);
 
   --grad-achievement: linear-gradient(135deg, #F59E0B 0%, #D97706 60%, #B45309 100%);
   --grad-achievement-hover: linear-gradient(135deg, #FBBF24 0%, #F59E0B 60%, #D97706 100%);
 
   /* Borders & Glows */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-card: rgba(255, 255, 255, 0.14);
-  --border-glow: rgba(16, 185, 129, 0.35);
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-card: rgba(255, 255, 255, 0.18);
+  --border-glow: rgba(16, 185, 129, 0.45);
   
   /* Multi-layered Soft Shadows */
-  --shadow-card: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08);
-  --shadow-card-hover: 0 35px 70px -15px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(16, 185, 129, 0.4);
+  --shadow-card: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 35px rgba(16, 185, 129, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  --shadow-card-hover: 0 35px 70px -15px rgba(16, 185, 129, 0.35), 0 0 45px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(52, 211, 153, 0.5);
   
-  --shadow-btn-primary: 0 10px 25px -3px rgba(16, 185, 129, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  --shadow-btn-secondary: 0 10px 25px -3px rgba(37, 99, 235, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  --shadow-btn-accent: 0 10px 25px -3px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  --shadow-btn-achievement: 0 10px 25px -3px rgba(217, 119, 6, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --shadow-btn-primary: 0 12px 28px -4px rgba(16, 185, 129, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  --shadow-btn-secondary: 0 12px 28px -4px rgba(37, 99, 235, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  --shadow-btn-accent: 0 12px 28px -4px rgba(139, 92, 246, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  --shadow-btn-achievement: 0 12px 28px -4px rgba(245, 158, 11, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 
   /* Typography */
   --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;

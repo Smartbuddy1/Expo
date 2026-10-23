@@ -30,8 +30,10 @@ export const companyData = {
   achievementsUrl: "https://aaryainnovtech.com/achievements",
   
   // Business Card & Branding Assets
-  cardImage: "/media/card_horizontal.jpeg",
-  cardImageFallback: "/media/card.jpeg",
+  cardImage: "/media/card_front.jpeg",
+  cardImageFront: "/media/card_front.jpeg",
+  cardImageBack: "/media/card_back.jpeg",
+  cardImageFallback: "/media/card_front.jpeg",
   companyLogo: "/media/logo_new.jpeg",
   flagshipLogo: "/media/smartbuddy.png.png",
   flagshipName: "Smart Buddy®",

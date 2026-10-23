@@ -259,7 +259,6 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
   cursor: pointer;
   transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
-  aspect-ratio: 1.6 / 1;
   will-change: transform;
   transform-style: preserve-3d;
 }
@@ -374,40 +373,205 @@
   opacity: 0.85;
 }
 
-.card-image-box {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: #FFFFFF;
+/* Floating Side Badge (Front / Back indicator) */
+.card-side-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.03em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.card-side-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #34D399;
+  box-shadow: 0 0 8px #34D399;
+}
+
+/* Floating Navigation Arrows */
+.card-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 12;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  transition: all var(--transition-fast);
+  opacity: 0.9;
 }
 
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform var(--transition-normal), opacity 0.3s ease;
-}
-
-.card-image.loading {
-  opacity: 0;
-}
-
-.card-image.loaded {
+.card-nav-arrow:hover {
+  background: rgba(15, 23, 42, 0.98);
+  border-color: var(--color-brand-emerald);
+  color: var(--color-brand-emerald);
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
   opacity: 1;
 }
 
-.card-skeleton {
-  position: absolute;
-  inset: 0;
-  background: #1E293B;
+.card-nav-arrow:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.card-nav-arrow.arrow-left {
+  left: 12px;
+}
+
+.card-nav-arrow.arrow-right {
+  right: 12px;
+}
+
+/* 2-Slide Track & Viewport */
+.card-slider-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #FFFFFF;
+  border-radius: 20px;
+}
+
+.card-slider-track {
+  display: flex;
+  width: 200%;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.card-slide {
+  width: 50%;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #FFFFFF;
+}
+
+.card-slide .card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Segmented Switcher Controls below the card */
+.card-switcher-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.15rem;
+}
+
+.card-switcher-pills {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 0.28rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  gap: 0.25rem;
+}
+
+.card-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.card-tab-btn:hover {
+  color: #FFFFFF;
+}
+
+.card-tab-btn.active {
+  background: var(--grad-primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+.tab-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.7;
+}
+
+.card-tab-btn.active .tab-indicator {
+  opacity: 1;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.card-swipe-hint {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  letter-spacing: 0.04em;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 1.15rem;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 9999px;
+  border: 1px solid rgba(52, 211, 153, 0.32);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 16px rgba(16, 185, 129, 0.14);
+  animation: swipeHintPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes swipeHintPulse {
+  0%, 100% {
+    border-color: rgba(52, 211, 153, 0.28);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 14px rgba(16, 185, 129, 0.12);
+  }
+  50% {
+    border-color: rgba(52, 211, 153, 0.65);
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.45), 0 0 22px rgba(16, 185, 129, 0.28);
+  }
 }
 
 .skeleton-pulse {
@@ -775,22 +939,22 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 14px rgba(37, 99, 235, 0.35);
 }
 
-/* Button 3: Our Products (Midnight Obsidian) */
+/* Button 3: Our Products (Cyber Violet) */
 .action-btn-accent {
   background: var(--grad-accent);
   box-shadow: var(--shadow-btn-accent);
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(196, 181, 253, 0.4);
 }
 
 .action-btn-accent:hover {
   background: var(--grad-accent-hover);
-  box-shadow: 0 18px 36px -4px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 18px 36px -4px rgba(139, 92, 246, 0.6), 0 0 20px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  border-color: rgba(196, 181, 253, 0.65);
   transform: translateY(-3px) scale(1.006);
 }
 
 .action-btn-accent .btn-icon-wrapper {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 14px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 14px rgba(139, 92, 246, 0.35);
 }
 
 /* Button 4: Achievements (Imperial Amber / Gold) */
@@ -1289,41 +1453,274 @@
 }
 
 /* --------------------------------------------------------------------------
-   Responsive Tweaks
+   Mobile-First Architecture & Native Smartphone Ergonomics
    -------------------------------------------------------------------------- */
-@media (max-width: 440px) {
-  .app-viewport {
-    padding: 1.1rem 0.75rem 2.5rem;
+@media (max-width: 768px) {
+  /* Hide side arrow buttons on touch & mobile screens (kept on laptop/PC) */
+  .card-nav-arrow {
+    display: none !important;
   }
-  
+}
+
+@media (max-width: 520px) {
+  .app-viewport {
+    padding-top: max(0.85rem, env(safe-area-inset-top));
+    padding-bottom: max(2.8rem, env(safe-area-inset-bottom));
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .glow-top {
+    top: -8%;
+    width: 340px;
+    height: 320px;
+    opacity: 0.65;
+    filter: blur(85px);
+  }
+
+  .glow-bottom {
+    bottom: -10%;
+    width: 320px;
+    height: 300px;
+    opacity: 0.55;
+    filter: blur(85px);
+  }
+
   .card-page-container {
+    max-width: 100%;
     gap: 1.35rem;
   }
 
+  .brand-header {
+    padding: 0.2rem 0.1rem;
+  }
+
+  .brand-logo-container {
+    height: 42px;
+    padding: 0.3rem 0.85rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  .brand-logo-img {
+    height: 30px;
+    max-width: 140px;
+  }
+
+  .header-action-btn {
+    padding: 0.5rem 0.95rem;
+    font-size: 0.82rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Slideable Card on Phone */
+  .card-container {
+    border-radius: 20px;
+    border: 1.5px solid rgba(255, 255, 255, 0.24);
+    box-shadow: 
+      0 18px 48px -10px rgba(0, 0, 0, 0.85),
+      0 0 30px rgba(16, 185, 129, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .card-download-btn {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    background: rgba(15, 23, 42, 0.88);
+    border: 1.5px solid rgba(255, 255, 255, 0.38);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Slide navigation arrows are hidden ONLY on mobile (preserved on laptop/PC) */
+  .card-nav-arrow {
+    display: none !important;
+  }
+
+  /* Card Switcher & Swipe Hint on Phone */
+  .card-switcher-container {
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  .card-swipe-hint {
+    font-size: 0.74rem;
+    padding: 0.42rem 1.1rem;
+    font-weight: 600;
+  }
+
+  /* Thumb-Zone Action Buttons */
+  .section-actions {
+    gap: 0.95rem;
+  }
+
   .action-btn {
-    padding: 0.85rem 1.1rem;
-    min-height: 60px;
+    padding: 0.95rem 1.15rem;
+    min-height: 66px;
+    border-radius: 18px;
+    border-width: 1.5px;
   }
 
-  .btn-label {
-    font-size: 0.98rem;
-  }
-
-  .btn-subtitle {
-    font-size: 0.72rem;
+  .action-btn:active {
+    transform: scale(0.965);
+    filter: brightness(0.96);
   }
 
   .btn-icon-wrapper {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
   }
-  
-  .share-channels-grid {
+
+  .btn-text-group {
+    padding: 0 0.95rem;
+  }
+
+  .btn-label {
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-subtitle {
+    font-size: 0.74rem;
+    font-weight: 500;
+    opacity: 0.95;
+  }
+
+  .btn-arrow-wrapper {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Floating Quick Contact Dock */
+  .quick-contact-row {
+    width: 100%;
+    max-width: 380px;
+    justify-content: space-around;
+    padding: 0.5rem 0.75rem;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 9999px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .quick-contact-link {
+    flex: 1;
+    justify-content: center;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .quick-contact-link:active {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34D399;
+  }
+
+  .footer-divider {
+    max-width: 280px;
+    margin: 0.75rem 0;
+  }
+
+  .security-tag {
+    font-size: 0.73rem;
+    padding: 0.35rem 0.85rem;
+  }
+
+  /* Centered Lightbox Modal on Mobile (Middle placement) */
+  .modal-backdrop {
+    padding: max(1rem, env(safe-area-inset-top)) 0.85rem max(1rem, env(safe-area-inset-bottom));
+    align-items: center;
+    justify-content: center;
+    background: rgba(4, 7, 15, 0.92);
+  }
+
+  .modal-container {
+    max-width: 480px;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid var(--border-card);
+    max-height: 88vh;
+    max-height: 88dvh;
+    animation: scaleUpModal 0.26s var(--ease-spring);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+    margin: auto;
+  }
+
+  .modal-header {
+    padding: 1.1rem 1.25rem 0.9rem;
+  }
+
+  .modal-image-wrapper {
+    padding: 0.65rem;
+  }
+
+  .modal-image {
+    max-height: 52vh;
+  }
+
+  .modal-footer {
+    padding: 0.95rem 1.15rem;
     gap: 0.65rem;
   }
-  
+
+  .share-modal-body {
+    padding: 1.15rem 1.15rem 1.35rem;
+    gap: 1.1rem;
+  }
+
+  .share-channels-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.65rem;
+  }
+
+  .share-channel-item {
+    padding: 0.45rem 0.2rem;
+  }
+
   .share-channel-icon-box {
-    width: 46px;
-    height: 46px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+
+  .share-channel-name {
+    font-size: 0.72rem;
+  }
+
+  .share-modal-footer {
+    padding: 0.75rem 1.15rem max(1.1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Extra small devices (iPhone SE, smaller Androids < 380px) */
+@media (max-width: 375px) {
+  .app-viewport {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+  }
+
+  .btn-label {
+    font-size: 0.92rem;
+  }
+
+  .btn-subtitle {
+    font-size: 0.68rem;
+  }
+
+  .btn-text-group {
+    padding: 0 0.65rem;
+  }
+
+  .card-tab-btn {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.35rem;
   }
 }

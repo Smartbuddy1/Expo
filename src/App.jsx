@@ -20,23 +20,39 @@ import './App.css';
 
 export function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState(companyData.cardImageFront || companyData.cardImage);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-  const [downloadSuccess, setDownloadSuccess] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
 
-  // Handle vCard Download
-  const handleAddToContact = () => {
+  // vCard file download (for modal or desktop use)
+  const handleDownloadVCard = () => {
     try {
       downloadVCard(companyData);
-      setDownloadSuccess(true);
-      setTimeout(() => setDownloadSuccess(false), 4000);
     } catch (err) {
-      console.error('Failed to download vCard:', err);
+      console.error('Failed to trigger contact save:', err);
     }
   };
 
-  // Open the dedicated Share window / modal
-  const handleShare = () => {
+  // Open native system share sheet (only installed apps) if supported, else open clean ShareModal
+  const handleShare = async () => {
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : companyData.websiteUrl;
+    const shareData = {
+      title: `${companyData.directorName} - ${companyData.companyName}`,
+      text: `Digital Business Card of ${companyData.directorName} (${companyData.designation}), ${companyData.companyName}:\n${shareUrl}`,
+      url: shareUrl
+    };
+
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          return;
+        }
+      }
+    }
+
     setIsShareModalOpen(true);
   };
 
@@ -79,24 +95,12 @@ export function App() {
         <section className="section-card" aria-label="Business Card Presentation">
           <BusinessCard 
             data={companyData} 
-            onPreview={() => setIsModalOpen(true)}
+            onPreview={(imgSrc) => {
+              setModalImage(imgSrc || companyData.cardImageFront || companyData.cardImage);
+              setIsModalOpen(true);
+            }}
           />
         </section>
-
-        {/* Download Feedback Banner */}
-        {downloadSuccess && (
-          <div className="download-toast" role="status" aria-live="polite">
-            <div className="toast-icon-box">
-              <Check size={18} />
-            </div>
-            <div className="toast-content">
-              <p className="toast-title">Contact Ready!</p>
-              <p className="toast-desc">
-                Tap <strong>"Open"</strong> on the prompt to save directly to your Phone Contacts.
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Share Feedback Banner */}
         {shareSuccess && (
@@ -115,15 +119,15 @@ export function App() {
 
         {/* 2. Action Buttons in strict required order */}
         <section className="section-actions" aria-label="Primary Actions">
-          {/* Button 1: Add to Contact */}
+          {/* Button 1: Add to Contact (Direct Phone / Dialer Action - Zero Downloads) */}
           <ActionButton
             id="btn-add-contact"
             label="Add to Contact"
             subtitle="Save Directly to Phone Contacts"
             icon={UserPlus}
             variant="primary"
-            onClick={handleAddToContact}
-            ariaLabel="Add Aarya Innovtech to phone contacts"
+            href={`tel:${companyData.cleanCallPhone || companyData.cleanPhone}`}
+            ariaLabel={`Add ${companyData.directorName} to contacts via phone dialer`}
           />
 
           {/* Button 2: Visit Our Website */}
@@ -197,9 +201,9 @@ export function App() {
       <ImageModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        imageSrc={companyData.cardImage}
+        imageSrc={modalImage}
         title={companyData.companyName}
-        onDownload={handleAddToContact}
+        onDownload={handleDownloadVCard}
       />
 
       {/* Dedicated Share Window Modal */}

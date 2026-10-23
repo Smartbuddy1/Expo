@@ -9,6 +9,7 @@ export function ActionButton({
   variant = 'primary', // 'primary' | 'secondary' | 'accent'
   onClick,
   href,
+  download,
   isExternal = false,
   ariaLabel
 }) {
@@ -38,10 +39,12 @@ export function ActionButton({
       <a
         id={id}
         href={href}
+        download={download}
         target={isExternal ? '_blank' : '_self'}
         rel={isExternal ? 'noopener noreferrer' : undefined}
         className={baseClassName}
         aria-label={ariaLabel || label}
+        onClick={onClick}
       >
         {content}
       </a>

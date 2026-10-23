@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { X, Download, ExternalLink } from 'lucide-react';
 
-export function ImageModal({ isOpen, onClose, imageSrc, title, onDownload }) {
+export function ImageModal({ isOpen, onClose, imageSrc, title, onDownload, contactHref }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();

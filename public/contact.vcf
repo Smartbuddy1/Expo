@@ -1,14 +1,15 @@
 BEGIN:VCARD
 VERSION:3.0
 PRODID:-//Aarya Innovtech//Digital Business Card//EN
-N:Bachhav;Sujata;;;
-FN:Sujata Bachhav
+N:Bachhav;Sujata;;Mrs.;
+FN:Mrs. Sujata Bachhav
 ORG:AARYA INNOVTECH PVT. LTD.
-TITLE:Director
+TITLE:Chief Executive Officer
 TEL;TYPE=CELL,VOICE,PREF:+919503331635
 TEL;TYPE=WORK,VOICE:+919923810197
 EMAIL;TYPE=WORK,INTERNET,PREF:sales@aaryainnovtech.com
 EMAIL;TYPE=INTERNET:director@aaryainnovtech.com
 URL:https://aaryainnovtech.com/
+ADR;TYPE=WORK:;;S27, Near Emerson, Ambad MIDC;Nashik;Maharashtra;422010;India
 NOTE:AARYA INNOVTECH PVT. LTD. - Official Digital Business Card
 END:VCARD
